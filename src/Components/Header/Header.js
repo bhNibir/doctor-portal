@@ -14,17 +14,21 @@ const Header = () => {
             alignItems="center"
         >
             <Grid item xs={6}>
-                <Typography variant="h3" component="h3">
+            <Box p={12} mx="auto">
+                <Typography variant="h3">
                     Your New Smile
                     Starts Here
                 </Typography>
-                <Typography variant="body1">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the
-                </Typography>
+                    <Box my={5}>
+                    <Typography color="textSecondary" variant="body1">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the
+                    </Typography>
+                    </Box>
                 <Button className={classes.btn}>GET APPOINTMENT</Button>
+            </Box>
             </Grid>
             <Grid item xs={6}>
-                <Box mx="auto">
+                <Box m={12} mx="auto">
                     <img   width="75%" src={maskGroup} alt=""/>
                 </Box>
             </Grid>
