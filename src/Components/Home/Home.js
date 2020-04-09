@@ -1,7 +1,8 @@
 import React from 'react';
-import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 import { makeStyles } from '@material-ui/core';
+import Slider from '../Slider/Slider';
+import GetAppoint from '../GetAppoint/GetAppoint';
 export const useStyles = makeStyles((theme) => ({
     '@global': {
       ul: {
@@ -43,7 +44,9 @@ const Home = () => {
     return (
         <div style={BackgroundHead}>
             <Navbar/>
-            <Header/>
+            <Slider>
+              <GetAppoint/>
+            </Slider>
         </div>
     );
 };
