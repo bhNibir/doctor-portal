@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
     link: {
-      margin: theme.spacing(1, 1.5),
+      margin: theme.spacing(1, 3.5),
     },
     btn: {
         background: 'linear-gradient(45deg, #19D3AE 30%, #0FCFEC 90%)',
