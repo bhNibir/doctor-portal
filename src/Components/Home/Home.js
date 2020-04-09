@@ -29,7 +29,12 @@ export const useStyles = makeStyles((theme) => ({
         height: 48,
         padding: '0 30px',
       },
-}
+    gradientText: {
+        background: 'linear-gradient(45deg, #19D3AE 30%, #0FCFEC 90%)', 
+        "-webkit-background-clip": "text",
+        "-webkit-text-fill-color": "transparent",
+        },
+    }
 ))
 
 
