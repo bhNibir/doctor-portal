@@ -13,22 +13,22 @@ const Navbar = () => {
                     
                 </Typography>
                 <nav>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                    <Link variant="button" color="textPrimary" href="/" className={classes.link}>
                         Home
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                    <Link variant="button" color="textPrimary" href="/about" className={classes.link}>
                         About
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                    <Link variant="button" color="textPrimary" href="/services" className={classes.link}>
                         Dental Services
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                    <Link variant="button" color="textPrimary" href="/reviews" className={classes.link}>
                         Reviews
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                    <Link variant="button" color="textPrimary" href="/blog" className={classes.link}>
                         Blog
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                    <Link variant="button" color="textPrimary" href="/contact" className={classes.link}>
                         Contact Us
                     </Link>
                 </nav>

@@ -3,7 +3,7 @@ import { Grid, Box } from '@material-ui/core';
 import maskGroup from '../../images/Mask Group 1.png'
 
 
-const Slider = (props) => {
+const HomeSlider = (props) => {
     
 
     return (
@@ -25,4 +25,4 @@ const Slider = (props) => {
     );
 };
 
-export default Slider;
+export default HomeSlider;

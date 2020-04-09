@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import { makeStyles } from '@material-ui/core';
-import Slider from '../Slider/Slider';
+import HomeSlider from '../HomeSlider/HomeSlider';
 import GetAppoint from '../GetAppoint/GetAppoint';
 export const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -40,13 +40,15 @@ const BackgroundHead = {
   backgroundSize: "cover",
   }
 
-const Home = () => {
+const Home = (props) => {
     return (
         <div style={BackgroundHead}>
             <Navbar/>
-            <Slider>
-              <GetAppoint/>
-            </Slider>
+            <HomeSlider>
+              {
+                props.children? props.children : <GetAppoint/>
+              }
+            </HomeSlider>
         </div>
     );
 };

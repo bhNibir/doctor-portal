@@ -6,7 +6,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import NoMatch from './NoMatch/NoMatch';
+import NoMatch from './Components/NoMatch/NoMatch';
+import Appointment from './Components/Appointment/Appointment';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route path="/home">
             <Home/>
+          </Route>
+          <Route path="/appointment">
+            <Appointment/>
           </Route>
           <Route path="*">
             <NoMatch />

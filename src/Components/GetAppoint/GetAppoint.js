@@ -15,7 +15,7 @@ const GetAppoint = () => {
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the
                 </Typography>
             </Box>
-            <Button className={classes.btn}>GET APPOINTMENT</Button>
+            <Button href="/appointment" className={classes.btn}>GET APPOINTMENT</Button>
         </Box>
     );
 };
