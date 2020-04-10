@@ -22,6 +22,7 @@ const FormDialog = ({ service, selectedDate }) => {
     const [appointment, setAppointment] = useState({
       doctor_id : "",
       date: "",
+      time: "",
       patient_name : "",
       patient_email : "",
       patient_number : "",
@@ -31,6 +32,7 @@ const FormDialog = ({ service, selectedDate }) => {
       const appointmentData = {
         doctor_id : data.doctorName.value,
         date: data.date,
+        time: data.time,
         patient_name : data.patientName,
         patient_email : data.email,
         patient_number : data.phone,
@@ -46,7 +48,7 @@ const FormDialog = ({ service, selectedDate }) => {
       .then(data => {
         console.log(data)
         handleClose()
-        setAlert({type : 'success', message : 'Appointment Successfully'})
+        setAlert({type : 'success', message : 'Thank You For Appointment'})
       })
       .catch(err => {
         setAlert({type : 'error', message : err})
@@ -132,11 +134,23 @@ const FormDialog = ({ service, selectedDate }) => {
               type="date"
               defaultValue = {convertDate(selectedDate)} 
               name="date" 
-              inputRef={register({required: true, minLength: 6, maxLength: 12})} 
+              inputRef={register} 
               style={{marginBottom: "5pt"}}
+              disabled
               /> 
 
               <br/>   
+              <TextField 
+              fullWidth
+              size="small"
+              variant="outlined" 
+              type="text"
+              defaultValue = {service.time} 
+              name="time" 
+              inputRef={register} 
+              style={{marginBottom: "5pt"}}
+              disabled
+              /> 
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} className={classes.btn}>

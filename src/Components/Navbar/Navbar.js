@@ -25,8 +25,8 @@ const Navbar = () => {
                     <Link variant="button" color="textPrimary" href="/reviews" className={classes.link}>
                         Reviews
                     </Link>
-                    <Link variant="button" color="textPrimary" href="/dashboard" className={classes.link}>
-                        Dashboard
+                    <Link variant="button" color="textPrimary" href="doctor/dashboard" className={classes.link}>
+                        Doctor Panel
                     </Link>
                     <Link variant="button" color="textPrimary" href="/contact" className={classes.link}>
                         Contact Us
