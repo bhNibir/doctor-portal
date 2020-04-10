@@ -8,7 +8,6 @@ const Appointment = () => {
 
     const handleDateChange = date => {
         setSelectedDate(date);
-        console.log(date);
     };
     return (
         <>
@@ -18,7 +17,7 @@ const Appointment = () => {
                     handleDateChange={handleDateChange}
                 />
             </Home>
-            <AvailableAppointments/>
+            <AvailableAppointments selectedDate={selectedDate}/>
         
         </>
     );

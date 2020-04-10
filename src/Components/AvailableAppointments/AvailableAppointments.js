@@ -4,7 +4,7 @@ import { useStyles } from '../Home/Home';
 import { apiURL } from '../../App';
 import ServicesCard from '../ServicesCard/ServicesCard';
 
-const AvailableAppointments = () => {
+const AvailableAppointments = ({selectedDate}) => {
     const [services, setServices] = useState([])
     const classes = useStyles();
     useEffect(()=>{
@@ -26,7 +26,7 @@ const AvailableAppointments = () => {
         
             <Grid container spacing={4}>
                 {
-                    services.map(service => <ServicesCard service={service}/>)
+                    services.map(service => <ServicesCard service={service} selectedDate={selectedDate}/>)
                 }
             </Grid>
         </Container>    

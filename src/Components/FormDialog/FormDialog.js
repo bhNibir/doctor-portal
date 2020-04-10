@@ -13,7 +13,7 @@ const options = [
 ];
 
 
-const FormDialog = ({service}) => {
+const FormDialog = ({ service, selectedDate }) => {
  
     const [open, setOpen] = useState(false);
     const classes = useStyles()
@@ -28,6 +28,11 @@ const FormDialog = ({service}) => {
       setOpen(false);
     };
 
+    const convertDate = date => {
+       const newDate = JSON.stringify(date)
+       return  newDate.slice(1, 11)
+    }
+    
     return (
       <div>
         <Button  className={classes.btn}  onClick={handleClickOpen}>
@@ -85,7 +90,8 @@ const FormDialog = ({service}) => {
               fullWidth
               size="small"
               variant="outlined" 
-              type="date" 
+              type="date"
+              defaultValue = {convertDate(selectedDate)} 
               name="date" 
               inputRef={register({required: true, minLength: 6, maxLength: 12})} 
               style={{marginBottom: "5pt"}}

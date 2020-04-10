@@ -4,11 +4,10 @@ import { useStyles } from '../Home/Home';
 import FormDialog from '../FormDialog/FormDialog';
 
 
-const ServicesCard = ({service}) => {    
+const ServicesCard = ({ service, selectedDate }) => {    
     const classes = useStyles()
-
+    
     return (
-            
         <>
         <Grid item  xs={12} sm={6} md={4}>
               <Card >
@@ -31,7 +30,7 @@ const ServicesCard = ({service}) => {
                 </CardContent>
                 <CardActions style={{justifyContent: 'center'}}>
                     <Box mb={2}>
-                        <FormDialog service={service} />
+                        <FormDialog selectedDate={selectedDate} service={service} />
                     </Box>
                 </CardActions>
               </Card>
