@@ -31,7 +31,7 @@ const ServicesCard = ({service}) => {
                 </CardContent>
                 <CardActions style={{justifyContent: 'center'}}>
                     <Box mb={2}>
-                        <FormDialog></FormDialog>
+                        <FormDialog service={service} />
                     </Box>
                 </CardActions>
               </Card>

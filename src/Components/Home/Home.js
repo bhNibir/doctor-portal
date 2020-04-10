@@ -34,8 +34,14 @@ export const useStyles = makeStyles((theme) => ({
         "-webkit-background-clip": "text",
         "-webkit-text-fill-color": "transparent",
         },
-    }
-))
+        root: {
+          '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: 200,
+          },
+        },
+        
+}))
 
 
 const BackgroundHead = {
