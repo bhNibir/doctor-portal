@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Card, CardContent, Typography, CardActions, Button, Box } from '@material-ui/core';
 import { useStyles } from '../Home/Home';
+import FormDialog from '../FormDialog/FormDialog';
 
 
 const ServicesCard = ({service}) => {    
@@ -30,9 +31,7 @@ const ServicesCard = ({service}) => {
                 </CardContent>
                 <CardActions style={{justifyContent: 'center'}}>
                     <Box mb={2}>
-                        <Button size="small" className={classes.btn}>
-                            BOOK APPOINTMENT
-                        </Button>
+                        <FormDialog></FormDialog>
                     </Box>
                 </CardActions>
               </Card>
