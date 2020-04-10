@@ -5,6 +5,7 @@ import { apiURL } from '../../App';
 import ServicesCard from '../ServicesCard/ServicesCard';
 
 const AvailableAppointments = ({selectedDate}) => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
     const [services, setServices] = useState([])
     const classes = useStyles();
     useEffect(()=>{
@@ -19,7 +20,7 @@ const AvailableAppointments = ({selectedDate}) => {
         <Container  maxWidth="md"> 
             <Box my={3} className={classes.gradientText}>
                 <Typography variant="h4" align="center" >
-                    Available Appointments on February 7, 2020
+                    Available Appointments on {selectedDate.toLocaleDateString(undefined, options)}
                 </Typography>
             </Box>
             

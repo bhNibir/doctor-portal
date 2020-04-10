@@ -1,10 +1,9 @@
 import React from 'react';
-import { CssBaseline, AppBar, Toolbar, IconButton, Typography, Drawer, Divider, Box, Container, Grid, Paper, List, makeStyles } from '@material-ui/core';
+import { CssBaseline, AppBar, Toolbar, IconButton, Typography, Drawer, Divider, Container, makeStyles, MenuList } from '@material-ui/core';
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from './DrawerItems';
-
 
 const drawerWidth = 240;
 
@@ -98,12 +97,12 @@ const useStyles = makeStyles((theme) => ({
 const DashboardLayout = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+    const handleDrawerOpen = () => {
+      setOpen(true);
+    };
+    const handleDrawerClose = () => {
+      setOpen(false);
+    };
 
     return (
         <div className={classes.root}>
@@ -137,7 +136,7 @@ const DashboardLayout = (props) => {
                 </IconButton>
                 </div>
                 <Divider />
-                <List >{mainListItems}</List>
+                <MenuList >{mainListItems}</MenuList>
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
 import { useStyles } from '../Home/Home';
+import { Link as RouterLink } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -13,22 +14,22 @@ const Navbar = () => {
                     
                 </Typography>
                 <nav>
-                    <Link variant="button" color="textPrimary" href="/" className={classes.link}>
+                    <Link variant="button" color="textPrimary" component={RouterLink} to="/" className={classes.link}>
                         Home
                     </Link>
-                    <Link variant="button" color="textPrimary" href="/about" className={classes.link}>
+                    <Link variant="button" color="textPrimary" component={RouterLink} to="/about" className={classes.link}>
                         About
                     </Link>
-                    <Link variant="button" color="textPrimary" href="/services" className={classes.link}>
+                    <Link variant="button" color="textPrimary" component={RouterLink} to="/services" className={classes.link}>
                         Dental Services
                     </Link>
-                    <Link variant="button" color="textPrimary" href="/reviews" className={classes.link}>
+                    <Link variant="button" color="textPrimary" component={RouterLink} to="/reviews" className={classes.link}>
                         Reviews
                     </Link>
-                    <Link variant="button" color="textPrimary" href="doctor/dashboard" className={classes.link}>
+                    <Link variant="button" color="textPrimary" component={RouterLink} to="/doctor" className={classes.link}>
                         Doctor Panel
                     </Link>
-                    <Link variant="button" color="textPrimary" href="/contact" className={classes.link}>
+                    <Link variant="button" color="textPrimary" component={RouterLink} to="/contact" className={classes.link}>
                         Contact Us
                     </Link>
                 </nav>

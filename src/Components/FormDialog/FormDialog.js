@@ -62,8 +62,6 @@ const FormDialog = ({ service, selectedDate }) => {
       setOpen(true);
     };
 
-    console.log(appointment)
-
     const handleClose = () => {
       setAppointment({})
       setOpen(false);
