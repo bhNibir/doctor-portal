@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import AppointmentCalender from '../AppointmentCalender/AppointmentCalender';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper, Typography, Box } from '@material-ui/core';
 import clsx from 'clsx';
 import { useStyles } from '../Home/useStyle';
 import DataTable from '../DataTable/DataTable';
 
 const DoctorAppointment = () => {
-    const classes = useStyles
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    const classes = useStyles()
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     const handleDateChange = date => {
@@ -28,7 +27,19 @@ const DoctorAppointment = () => {
             
             <Grid item xs={12} md={7} lg={8}>
               <Paper>
-                <DataTable></DataTable>
+                <Box display="flex" p={1} >
+                  <Box flexGrow={1} p={2}>
+                    <Typography className={classes.gradientText} gutterBottom variant="h6" component="h6">
+                      Appointment
+                    </Typography>
+                    </Box>
+                    <Box p={2}>
+                      <Typography variant="h6" color="textSecondary">
+                        {selectedDate.toDateString()}
+                      </Typography>
+                    </Box>
+                </Box>
+                <DataTable/>
               </Paper>
             </Grid>
 

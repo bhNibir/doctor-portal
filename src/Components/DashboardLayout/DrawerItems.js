@@ -46,7 +46,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Settings" />
     </MenuItem>
-    <MenuItem component={RouterLink} to="/doctor/logout" button>
+    <MenuItem component={RouterLink} to="/" button>
       <ListItemIcon style={{color: "#fff"}}>
         <ExitToAppIcon />
       </ListItemIcon>
