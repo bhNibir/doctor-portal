@@ -121,5 +121,8 @@ export const useStyles = makeStyles((theme) => ({
       "-webkit-background-clip": "text",
       "-webkit-text-fill-color": "transparent",
       },
+    table: {
+      minWidth: 650,
+      },
 
 }))
