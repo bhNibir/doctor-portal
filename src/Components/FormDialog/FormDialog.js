@@ -4,6 +4,7 @@ import { useStyles } from '../Home/Home';
 import { useForm } from 'react-hook-form';
 import { RHFInput } from 'react-hook-form-input';
 import Select from 'react-select';
+import { apiURL } from '../../App';
 
 const options = [
   { value: '1222', label: 'Dr. Nibir' },
@@ -17,14 +18,48 @@ const FormDialog = ({ service, selectedDate }) => {
  
     const [open, setOpen] = useState(false);
     const classes = useStyles()
-    
+    const [appointment, setAppointment] = useState({
+      doctor_id : "",
+      date: "",
+      patient_name : "",
+      patient_email : "",
+      patient_number : "",
+    })
     const { handleSubmit, register, setValue } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+      const appointmentData = {
+        doctor_id : data.doctorName.value,
+        date: data.date,
+        patient_name : data.patientName,
+        patient_email : data.email,
+        patient_number : data.phone,
+      }
+      setAppointment(appointmentData)
+      //sent data to DataBase
+      fetch(apiURL+"/addappointment", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(appointmentData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        handleClose()
+      })
+      .catch(err => console.log(err))
+
+      
+
+    }
+
     const handleClickOpen = () => {
       setOpen(true);
     };
 
+    console.log(appointment)
+
     const handleClose = () => {
+      setAppointment({})
       setOpen(false);
     };
 
@@ -45,7 +80,7 @@ const FormDialog = ({ service, selectedDate }) => {
             <RHFInput
               as={<Select placeholder="Select Doctor" options={options} />}
               rules={{ required: true }}
-              name="doctor-name"
+              name="doctorName"
               register={register}
               setValue={setValue}
               label="Doctor Name"
@@ -56,7 +91,7 @@ const FormDialog = ({ service, selectedDate }) => {
                 size="small"
                 variant="outlined"
                 label="Your Name" 
-                name="patient-name" 
+                name="patientName" 
                 inputRef={register({required: true, maxLength: 180})}
                 style={{marginBottom: "5pt"}}
                 />
