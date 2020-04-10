@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import NoMatch from './Components/NoMatch/NoMatch';
 import Appointment from './Components/Appointment/Appointment';
+import Doctor from './Components/Doctor/Doctor';
 
 export const apiURL = "http://localhost:4000"
 
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/appointment">
             <Appointment/>
+          </Route>
+          <Route path="/doctor">
+            <Doctor/>
           </Route>
           <Route path="*">
             <NoMatch />
