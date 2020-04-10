@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Input, MenuItem, Select } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, DialogContent, TextField, DialogActions } from '@material-ui/core';
 import { useStyles } from '../Home/Home';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { RHFInput } from 'react-hook-form-input';
+import Select from 'react-select';
+
+const options = [
+  { value: '1222', label: 'Dr. Nibir' },
+  { value: '1223', label: 'Dr. Strawberry' },
+  { value: '1224', label: 'Dr. Vanilla' },
+  { value: '1224', label: 'Dr. Abul' },
+];
+
 
 const FormDialog = ({service}) => {
  
     const [open, setOpen] = useState(false);
     const classes = useStyles()
     
-    const { control, handleSubmit, register } = useForm();
+    const { handleSubmit, register, setValue } = useForm();
     const onSubmit = data => console.log(data);
     const handleClickOpen = () => {
       setOpen(true);
@@ -23,27 +33,18 @@ const FormDialog = ({service}) => {
         <Button  className={classes.btn}  onClick={handleClickOpen}>
           BOOK APPOINTMENT
         </Button>
-        <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title" align="center">
-        <DialogTitle className={classes.gradientText} id="form-dialog-title">{service.treatment}</DialogTitle>
+        <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle className={classes.gradientText} id="form-dialog-title" align="center">{service.treatment}</DialogTitle>
         <form  onSubmit={handleSubmit(onSubmit)}>
             <DialogContent>
-                <section>
-                <Controller
-                  as={
-                    <Select
-                    size="small"
-                    variant="outlined"
-                    label="Select Doctor"  
-                    >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                  }
-              name="Select"
-              control={control}
+            <RHFInput
+              as={<Select placeholder="Select Doctor" options={options} />}
+              rules={{ required: true }}
+              name="doctor-name"
+              register={register}
+              setValue={setValue}
+              label="Doctor Name"
             />
-              </section>
               <br/>
               <TextField 
                 fullWidth
@@ -52,6 +53,7 @@ const FormDialog = ({service}) => {
                 label="Your Name" 
                 name="patient-name" 
                 inputRef={register({required: true, maxLength: 180})}
+                style={{marginBottom: "5pt"}}
                 />
 
               <br/>
@@ -63,6 +65,7 @@ const FormDialog = ({service}) => {
               label="Email" 
               name="email" 
               inputRef={register({required: true, pattern: /^\S+@\S+$/i})} 
+              style={{marginBottom: "5pt"}}
               />
 
               <br/>
@@ -74,15 +77,27 @@ const FormDialog = ({service}) => {
               label="Phone number" 
               name="phone" 
               inputRef={register({required: true, minLength: 6, maxLength: 12})} 
+              style={{marginBottom: "5pt"}}
+              /> 
+
+              <br/>
+              <TextField 
+              fullWidth
+              size="small"
+              variant="outlined" 
+              type="date" 
+              name="date" 
+              inputRef={register({required: true, minLength: 6, maxLength: 12})} 
+              style={{marginBottom: "5pt"}}
               /> 
 
               <br/>   
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} className={classes.btn}>
-              Cancel
+              Close
             </Button>
-            <input  type="submit" onClick={handleClose} className={classes.btn} value="Send" />
+            <input  type="submit" className={classes.btn} value="Send" />
               
           </DialogActions>
           </form>
