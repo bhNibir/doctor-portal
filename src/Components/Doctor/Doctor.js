@@ -1,10 +1,14 @@
 import React from 'react';
 import Dashboard from '../Dashboard/DashBoard';
+import DashboardLayout from '../DashboardLayout/DashboardLayout';
 
 const Doctor = () => {
     return (
         <div>
-            <Dashboard></Dashboard>
+            <DashboardLayout>
+                <Dashboard/>
+            </DashboardLayout>
+            
         </div>
     );
 };
