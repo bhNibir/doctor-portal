@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Card, CardContent, Typography, CardActions, Box } from '@material-ui/core';
-import { useStyles } from '../Home/Home';
+import { useStyles } from '../Home/useStyle';
 import FormDialog from '../FormDialog/FormDialog';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
-import { useStyles } from '../Home/Home';
+import { useStyles } from '../Home/useStyle';
 
 const GetAppoint = () => {
     const classes = useStyles();

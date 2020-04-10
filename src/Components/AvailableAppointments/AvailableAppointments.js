@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Box, Grid, Container } from '@material-ui/core';
-import { useStyles } from '../Home/Home';
 import { apiURL } from '../../App';
 import ServicesCard from '../ServicesCard/ServicesCard';
+import { useStyles } from '../Home/useStyle';
 
 const AvailableAppointments = ({selectedDate}) => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
