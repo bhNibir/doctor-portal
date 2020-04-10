@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AlertMessage = ({alertType, alertText}) => {
+const AlertMessage = ({alertType, AlertMessage}) => {
     const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -32,7 +32,7 @@ const AlertMessage = ({alertType, alertText}) => {
         <>
         <Snackbar anchorOrigin={ {vertical: 'top', horizontal: 'center'} } open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity={alertType}>
-                {alertText}
+                {AlertMessage}
             </Alert>
         </Snackbar>
         </>

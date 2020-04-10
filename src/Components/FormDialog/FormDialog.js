@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { RHFInput } from 'react-hook-form-input';
 import Select from 'react-select';
 import { apiURL } from '../../App';
+import AlertMessage from '../AlertMessage/AlertMessage'
 
 const options = [
   { value: '1222', label: 'Dr. Nibir' },
@@ -15,7 +16,7 @@ const options = [
 
 
 const FormDialog = ({ service, selectedDate }) => {
- 
+    const [alert, setAlert] = useState(null)
     const [open, setOpen] = useState(false);
     const classes = useStyles()
     const [appointment, setAppointment] = useState({
@@ -45,8 +46,11 @@ const FormDialog = ({ service, selectedDate }) => {
       .then(data => {
         console.log(data)
         handleClose()
+        setAlert({type : 'success', message : 'Appointment Successfully'})
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setAlert({type : 'error', message : err})
+      })
 
       
 
@@ -143,6 +147,11 @@ const FormDialog = ({ service, selectedDate }) => {
           </DialogActions>
           </form>
         </Dialog>
+
+        {
+          alert && <AlertMessage AlertMessage={alert.message} alertType={alert.type}/>
+          
+        }
       </div>
     );
 };
