@@ -39,7 +39,6 @@ const tableIcons = {
 
   
 const ShowDataTable = ({tableData, tableHeader, tableTitle}) => {
-    console.log(tableData, tableHeader, tableTitle)
     return (
         <MaterialTable
           icons={tableIcons}

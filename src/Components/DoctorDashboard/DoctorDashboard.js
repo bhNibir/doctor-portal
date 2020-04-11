@@ -40,9 +40,9 @@ const DoctorDashboard = () => {
         { title: 'Name', field: 'patient_name' },
         { title: 'Contact', field: 'patient_number' },
         {
-          field: 'url',
-          title: 'Avatar',
-          render: rowData => <Button className={classes.btn}>View</Button>
+          field: '_id',
+          title: 'Prescription',
+          render: rowData =>  <Button className={classes.btn}>View</Button>
         }
       ]
     )
@@ -60,7 +60,7 @@ const DoctorDashboard = () => {
         .then(data => setTableData(data))
     },[])       
  
-
+    
     return (
         <>
            <Box mb={3}>
