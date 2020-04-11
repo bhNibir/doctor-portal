@@ -14,6 +14,7 @@ const options = [
   { value: '1224', label: 'Dr. Abul' },
 ];
 
+// this style for react-select
 const selectStyles = {
   menu: base => ({
     ...base,

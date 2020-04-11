@@ -33,7 +33,7 @@ const DashboardLayout = (props) => {
                     <MenuIcon />
                 </IconButton>
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                    Dashboard
+                    Doctor's Dashboard
                 </Typography>
                 </Toolbar>
             </AppBar>
