@@ -6,10 +6,16 @@ import { useStyles } from '../Home/useStyle';
 import DataTable from '../DataTable/DataTable';
 import { apiURL } from '../../App';
 
+const tableColumns = [
+  { id: 'patient_name', label: 'Name', minWidth: 170 },
+  { id: 'time', label: 'Schedule', minWidth: 100 },
+];
+
 const DoctorAppointment = () => {
     const classes = useStyles()
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [rows, setRows] = useState(null)
+    const [columns, setColumns] = useState(tableColumns)
 
     const handleDateChange = date => {
         setSelectedDate(date);
@@ -59,7 +65,7 @@ const DoctorAppointment = () => {
                       </Typography>
                     </Box>
                 </Box>
-                <DataTable rows={rows} />
+                <DataTable rows={rows} columns={columns} />
               </Paper>
             </Grid>
 

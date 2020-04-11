@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, TablePagination, makeStyles, Button} from '@material-ui/core';
-import { useEffect } from 'react';
-import { apiURL } from '../../App'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
-const columns = [
-    { id: 'patient_name', label: 'Name', minWidth: 170 },
-    { id: 'time', label: 'Schedule', minWidth: 100 },
-  ];
-
   
   const useStyles = makeStyles({
     root: {
@@ -26,7 +18,7 @@ const columns = [
         },
   });
 
-const DataTable = ({rows}) => {
+const DataTable = ({rows, columns}) => {
     
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
@@ -50,11 +42,7 @@ const DataTable = ({rows}) => {
             <TableHead>
                 <TableRow>
                 {columns.map((column) => (
-                    <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                    >
+                    <TableCell>
                     {column.label}
                     </TableCell>
                 ))}
