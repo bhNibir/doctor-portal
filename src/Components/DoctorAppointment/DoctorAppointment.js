@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppointmentCalender from '../AppointmentCalender/AppointmentCalender';
 import { Grid, Paper, Typography, Box } from '@material-ui/core';
 import clsx from 'clsx';
 import { useStyles } from '../Home/useStyle';
 import DataTable from '../DataTable/DataTable';
+import { apiURL } from '../../App';
 
 const DoctorAppointment = () => {
     const classes = useStyles()
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const [rows, setRows] = useState(null)
 
     const handleDateChange = date => {
         setSelectedDate(date);
@@ -17,6 +19,19 @@ const DoctorAppointment = () => {
       const newDate = JSON.stringify(date)
       return  newDate.slice(1, 11)
    }
+
+   useEffect(()=> {
+    fetch(apiURL+'/getappointments',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({date:convertDate(selectedDate)})
+    })
+      .then(response => response.json())
+      .then(data => setRows(data))
+      .catch(err => console.log(err))
+    },[selectedDate])
     return (
         <>
         <Grid container spacing={3}>
@@ -44,7 +59,7 @@ const DoctorAppointment = () => {
                       </Typography>
                     </Box>
                 </Box>
-                <DataTable selectedDate={convertDate(selectedDate)} />
+                <DataTable rows={rows} />
               </Paper>
             </Grid>
 

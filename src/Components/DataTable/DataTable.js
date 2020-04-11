@@ -26,24 +26,13 @@ const columns = [
         },
   });
 
-const DataTable = ({selectedDate}) => {
-    const [rows, setRows] = useState(null)
+const DataTable = ({rows}) => {
+    
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     
-    useEffect(()=> {
-        fetch(apiURL+'/getappointments',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({date:selectedDate})
-        })
-        .then(response => response.json())
-        .then(data => setRows(data))
-        .catch(err => console.log(err))
-    },[selectedDate])
+
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
