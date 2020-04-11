@@ -12,6 +12,11 @@ const DoctorAppointment = () => {
     const handleDateChange = date => {
         setSelectedDate(date);
     };
+
+    const convertDate = date => {
+      const newDate = JSON.stringify(date)
+      return  newDate.slice(1, 11)
+   }
     return (
         <>
         <Grid container spacing={3}>
@@ -39,7 +44,7 @@ const DoctorAppointment = () => {
                       </Typography>
                     </Box>
                 </Box>
-                <DataTable/>
+                <DataTable selectedDate={convertDate(selectedDate)} />
               </Paper>
             </Grid>
 

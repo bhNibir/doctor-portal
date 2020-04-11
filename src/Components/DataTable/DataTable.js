@@ -26,19 +26,24 @@ const columns = [
         },
   });
 
-const DataTable = () => {
+const DataTable = ({selectedDate}) => {
     const [rows, setRows] = useState(null)
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(6);
-    
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
     
     useEffect(()=> {
-        fetch(apiURL+'/getappointment')
+        fetch(apiURL+'/getappointments',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({date:selectedDate})
+        })
         .then(response => response.json())
         .then(data => setRows(data))
         .catch(err => console.log(err))
-    },[])
+    },[selectedDate])
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -87,7 +92,7 @@ const DataTable = () => {
             </Table>
         </TableContainer>
         <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[5, 10, 25, 100]}
             component="div"
             count={rows && rows.length}
             rowsPerPage={rowsPerPage}
