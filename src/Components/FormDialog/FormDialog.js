@@ -14,6 +14,12 @@ const options = [
   { value: '1224', label: 'Dr. Abul' },
 ];
 
+const selectStyles = {
+  menu: base => ({
+    ...base,
+    zIndex: 100
+  })
+};
 
 const FormDialog = ({ service, selectedDate }) => {
     const [alert, setAlert] = useState(null)
@@ -82,7 +88,11 @@ const FormDialog = ({ service, selectedDate }) => {
         <form  onSubmit={handleSubmit(onSubmit)}>
             <DialogContent>
             <RHFInput
-              as={<Select placeholder="Select Doctor" options={options} />}
+              as={<Select 
+                placeholder="Select Doctor" 
+                options={options} 
+                styles={selectStyles}
+             />}
               rules={{ required: true }}
               name="doctorName"
               register={register}
