@@ -40,7 +40,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Prescriptions" />
     </MenuItem>
-    <MenuItem component={RouterLink} to="/doctor/settings" button>
+    <MenuItem component={RouterLink} to="/doctor/" button>
       <ListItemIcon style={{color: "#fff"}}>
         <SettingsIcon />
       </ListItemIcon>
