@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Box, Typography, makeStyles } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import DataTable from '../DataTable/DataTable';
 import { apiURL } from '../../App';
 import DateFnsUtils from '@date-io/date-fns';
+import ShowDataTable from '../ShowDataTable/ShowDataTable';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,28 +16,27 @@ const useStyles = makeStyles((theme) => ({
         },
   }));
 
-  //for testing
-  const tableColumns = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'gender', label: 'Gender', minWidth: 100 },  
-    { id: 'age', label: 'Age', minWidth: 50 },
-    { id: 'weight', label: 'Weight', minWidth: 50 },  
-    { id: 'contact', label: 'Contact', minWidth: 100 },    
-    { id: 'address', label: 'Address', minWidth: 200 }    
-  ];
 
 
 const Patients = () => {
-
-    const [selectedDate, handleDateChange] = useState(new Date());
-    const [patients, setPatients] = useState(null)
-    const [columns, setColumns] = useState(tableColumns)
     const classes = useStyles();
+    const [selectedDate, handleDateChange] = useState(new Date());
+    const [tableData, setTableData] = useState(null)
+    const [tableHeader, setTableHeader] = useState(
+        [
+            { field: 'name', title: 'Name' },
+            { field: 'gender', title: 'Gender' },  
+            { field: 'age', title: 'Age' },
+            { field: 'weight', title: 'Weight' },  
+            { field: 'contact', title: 'Contact' },    
+            { field: 'address', title: 'Address' }    
+          ]
+    )
 
     useEffect(()=>{
         fetch(apiURL+"/getpatients")
         .then(response => response.json())
-        .then(data => setPatients(data))
+        .then(data => setTableData(data))
     },[])
 
     return (
@@ -61,7 +60,9 @@ const Patients = () => {
                         
                     </Box>
                 </Box>
-                <DataTable rows={patients} columns={columns} />
+                {
+                  tableData && <ShowDataTable tableData={tableData} tableHeader={tableHeader} />
+                }
                 </Paper>
             </Grid>
         </>
