@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, TableFooter, TablePagination, makeStyles} from '@material-ui/core';
+import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, TableFooter, TablePagination, makeStyles, Button} from '@material-ui/core';
 import { useEffect } from 'react';
 import { apiURL } from '../../App'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const columns = [
     { id: 'patient_name', label: 'Name', minWidth: 170 },
     { id: 'time', label: 'Schedule', minWidth: 100 },
-    {
-      id: 'population',
-      label: 'Action',
-      minWidth: 100,
-      align: 'right',
-    },
   ];
 
   
@@ -22,6 +17,13 @@ const columns = [
     container: {
       maxHeight: 440,
     },
+    btn: {
+        background: 'linear-gradient(45deg, #19D3AE 30%, #0FCFEC 90%)',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        },
   });
 
 const DataTable = () => {
@@ -29,6 +31,7 @@ const DataTable = () => {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
+    
     
     useEffect(()=> {
         fetch(apiURL+'/getappointment')
@@ -61,6 +64,7 @@ const DataTable = () => {
                     {column.label}
                     </TableCell>
                 ))}
+                <TableCell style={{ minWidth: 100 }}>Action</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -75,6 +79,7 @@ const DataTable = () => {
                         </TableCell>
                         );
                     })}
+                    <TableCell><Button className={classes.btn}>Not Visited <ArrowDropDownIcon /></Button></TableCell>
                     </TableRow>
                 );
                 })}
