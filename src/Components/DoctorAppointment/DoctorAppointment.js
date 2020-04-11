@@ -1,21 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import AppointmentCalender from '../AppointmentCalender/AppointmentCalender';
-import { Grid, Paper, Typography, Box } from '@material-ui/core';
-import clsx from 'clsx';
-import { useStyles } from '../Home/useStyle';
-import DataTable from '../DataTable/DataTable';
+import { Grid, Paper, Typography, Box, Button, makeStyles } from '@material-ui/core';
 import { apiURL } from '../../App';
+import ShowDataTable from '../ShowDataTable/ShowDataTable';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-const tableColumns = [
-  { id: 'patient_name', label: 'Name', minWidth: 170 },
-  { id: 'time', label: 'Schedule', minWidth: 100 },
-];
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  gradientText: {
+      background: 'linear-gradient(45deg, #19D3AE 30%, #0FCFEC 90%)', 
+      "-webkit-background-clip": "text",
+      "-webkit-text-fill-color": "transparent",
+      },
+  btn: {
+    background: 'linear-gradient(45deg, #19D3AE 30%, #0FCFEC 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    },
+}));
+
 
 const DoctorAppointment = () => {
     const classes = useStyles()
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [rows, setRows] = useState(null)
-    const [columns, setColumns] = useState(tableColumns)
+    const [tableData, setTableData] = useState()
+    const tableHeader = [
+      { field: 'patient_name', title: 'Name' },
+      { field: 'time', title: 'Schedule' },
+      {
+        field: '', 
+        title: 'Action',
+        render: rowData => <Button className={classes.btn}>Not Visited <ArrowDropDownIcon /></Button>
+      }
+    ];
 
     const handleDateChange = date => {
         setSelectedDate(date);
@@ -35,7 +57,7 @@ const DoctorAppointment = () => {
         body: JSON.stringify({date:convertDate(selectedDate)})
     })
       .then(response => response.json())
-      .then(data => setRows(data))
+      .then(data => setTableData(data))
       .catch(err => console.log(err))
     },[selectedDate])
     return (
@@ -65,7 +87,8 @@ const DoctorAppointment = () => {
                       </Typography>
                     </Box>
                 </Box>
-                <DataTable rows={rows} columns={columns} />
+                {/* <DataTable rows={rows} columns={columns} /> */}
+                <ShowDataTable tableHeader={tableHeader} tableData={tableData}/>
               </Paper>
             </Grid>
 
