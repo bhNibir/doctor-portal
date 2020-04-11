@@ -59,7 +59,7 @@ export const useStyles = makeStyles((theme) => ({
       drawerPaper: {
         background: 'linear-gradient(160deg, #19D3AE 30%, #0FCFEC 90%)',
         color: "#fff",
-        position: 'relative',
+        position: "relative !important",
         whiteSpace: 'nowrap',
         width: drawerWidth,
         transition: theme.transitions.create('width', {

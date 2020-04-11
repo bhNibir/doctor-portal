@@ -16,8 +16,10 @@ import Patients from './Components/Patients/Patients';
 import Prescriptions from './Components/Prescriptions/Prescriptions';
 
 
+//Local Sever
+// export const apiURL = "http://localhost:4000"
 
-export const apiURL = "http://localhost:4000"
+export const apiURL = "https://agile-savannah-65614.herokuapp.com"
 
 
 
