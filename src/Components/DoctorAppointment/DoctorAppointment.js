@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 const DoctorAppointment = () => {
     const classes = useStyles()
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const [loading, setLoading] = useState(false);
+
     const [tableData, setTableData] = useState(null)
     const tableHeader = [
       { field: 'patient_name', title: 'Name' },
@@ -41,9 +43,10 @@ const DoctorAppointment = () => {
     ];
 
     const handleDateChange = date => {
+        setLoading(true)
         setSelectedDate(date);
     };
-
+    console.log(selectedDate)
     const convertDate = date => {
       const newDate = JSON.stringify(date)
       return  newDate.slice(1, 11)
@@ -58,7 +61,10 @@ const DoctorAppointment = () => {
         body: JSON.stringify({date:convertDate(selectedDate)})
     })
       .then(response => response.json())
-      .then(data => setTableData(data))
+      .then(data => {
+        setTableData(data)
+        setLoading(false)
+      })
       .catch(err => console.log(err))
     },[selectedDate])
     return (
@@ -90,8 +96,14 @@ const DoctorAppointment = () => {
                       </Typography>
                     </Box>
                 </Box>
-                {/* <DataTable rows={rows} columns={columns} /> */}
-                <ShowDataTable tableHeader={tableHeader} tableData={tableData}/>
+                {
+                  loading 
+                  ?
+                  <ShowLoading/>
+                  :
+                  <ShowDataTable tableHeader={tableHeader} tableData={tableData}/>
+                }
+                
               </Paper>
             </Grid>
 
