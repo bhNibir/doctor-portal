@@ -39,7 +39,7 @@ const Prescriptions = () => {
         {
           field: '_id',
           title: 'Prescription',  
-          render: rowData =>  <Button className={classes.btn} onClick={()=>handleClick(rowData)}>Add</Button>
+          render: rowData =>  <Button className={classes.btn} onClick={()=>handleClick(rowData)}>View</Button>
         }
       ]
     )
