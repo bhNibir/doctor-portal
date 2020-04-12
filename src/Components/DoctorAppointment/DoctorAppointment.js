@@ -5,6 +5,7 @@ import { apiURL } from '../../App';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ShowLoading from '../ShowLoading/ShowLoading';
+import PrescriptionsForm from '../PrescriptionsForm/PrescriptionsForm';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +31,8 @@ const DoctorAppointment = () => {
     const classes = useStyles()
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [loading, setLoading] = useState(false);
-
+    const [open, setOpen] = useState(false);
+    const [patientInfo, setPatientInfo] = useState(null);
     const [tableData, setTableData] = useState(null)
     const tableHeader = [
       { field: 'patient_name', title: 'Name' },
@@ -46,14 +48,15 @@ const DoctorAppointment = () => {
         render: rowData => <Button size="small" className={classes.btn}>Not Visited <ArrowDropDownIcon /></Button>
       }
     ];
-
     const handleDateChange = date => {
         setLoading(true)
         setSelectedDate(date);
     };
-
+   
+   
     const handleClick= rowData => {
-      console.log(rowData)
+      setPatientInfo(rowData)
+      setOpen(true);
     }
 
     const convertDate = date => {
@@ -119,6 +122,9 @@ const DoctorAppointment = () => {
             </Grid>
           :
           <ShowLoading/>
+        }
+        {
+          patientInfo && <PrescriptionsForm open={open} setOpen={setOpen} patientInfo={patientInfo}/>
         }
         </>
     );

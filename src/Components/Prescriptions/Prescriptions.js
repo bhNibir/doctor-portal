@@ -5,6 +5,7 @@ import ShowDataTable from '../ShowDataTable/ShowDataTable';
 import ShowLoading from '../ShowLoading/ShowLoading';
 import DateFnsUtils from '@date-io/date-fns';
 import { apiURL } from '../../App';
+import PrescriptionsForm from '../PrescriptionsForm/PrescriptionsForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -93,6 +94,7 @@ const Prescriptions = () => {
         </>:
         <ShowLoading/>
       }
+      <PrescriptionsForm></PrescriptionsForm>
       </>          
         
     );
