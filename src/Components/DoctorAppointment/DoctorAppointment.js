@@ -46,7 +46,7 @@ const DoctorAppointment = () => {
         setLoading(true)
         setSelectedDate(date);
     };
-    console.log(selectedDate)
+
     const convertDate = date => {
       const newDate = JSON.stringify(date)
       return  newDate.slice(1, 11)
