@@ -6,13 +6,12 @@ import AlertMessage from '../AlertMessage/AlertMessage';
 
 const PrescriptionsForm = ({open, setOpen, prescriptionInfo}) => {
     const [alert, setAlert] = useState(null)
-    const { handleSubmit, register, setValue } = useForm();
+    const { handleSubmit, register } = useForm();
 
     const onSubmit = data => {
         const {patientName, ...rest} = data
         const {patient_email} = prescriptionInfo
         const prescriptionData = {patient_email, ...rest}
-        console.log(prescriptionData)
 
         //sent data to DataBase
         fetch(apiURL+"/addprescriptions", {

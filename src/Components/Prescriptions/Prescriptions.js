@@ -5,7 +5,6 @@ import ShowDataTable from '../ShowDataTable/ShowDataTable';
 import ShowLoading from '../ShowLoading/ShowLoading';
 import DateFnsUtils from '@date-io/date-fns';
 import { apiURL } from '../../App';
-import PrescriptionsForm from '../PrescriptionsForm/PrescriptionsForm';
 import ShowPrescriptions from '../ShowPrescriptions/ShowPrescriptions';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
   
 const Prescriptions = () => {
     const classes = useStyles();
-    const [selectedDate, handleDateChange] = useState(new Date());
+    const [handleDateChange] = useState(new Date());
     const [tableData, setTableData] = useState(null)
     const [open, setOpen] = useState(false);
     const [prescriptions, setPrescriptions] = useState(null);
-    const [tableHeader, setTableHeader] = useState(
+    const [tableHeader] = useState(
       [
         { title: "Sr. No", field: "tableData.id" , render : rowData => rowData.tableData.id+1},
         { title: 'Date', field: 'date' },
@@ -47,12 +46,6 @@ const Prescriptions = () => {
       ]
     )
    
-    const statusCardItems = [
-        {total: 29, text: "Pending Appointments", color: "#F1536E"},
-        {total: 20, text: "Today’s Appointments", color: "#3DA5F4"},
-        {total: 12, text: "Total Appointments", color: "#00C689"},
-        {total: 72, text: "Total Patients", color: "#FDA006"}
-    ]
     
     useEffect(()=>{
         fetch(apiURL+"/getallappointments")
@@ -63,7 +56,6 @@ const Prescriptions = () => {
     const handleClick= rowData => {
         setOpen(true);
         const {patient_email}=rowData
-        console.log(patient_email)
         fetch(apiURL+'/getprescriptions',{
           method: 'POST',
           headers: {

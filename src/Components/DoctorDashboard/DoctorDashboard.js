@@ -8,7 +8,6 @@ import DateFnsUtils from '@date-io/date-fns';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
 import ShowLoading from '../ShowLoading/ShowLoading';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import PrescriptionsForm from '../PrescriptionsForm/PrescriptionsForm';
 import ShowPrescriptions from '../ShowPrescriptions/ShowPrescriptions';
 
 const useStyles = makeStyles((theme) => ({
@@ -55,10 +54,9 @@ const DoctorDashboard = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [prescriptions, setPrescriptions] = useState(null);
-    const [selectedDate, handleDateChange] = useState(new Date());
+    const [ handleDateChange] = useState(new Date());
     const [tableData, setTableData] = useState(null)
-    const [loading, setLoading] = useState(false);
-    const [tableHeader, setTableHeader] = useState(
+    const [tableHeader] = useState(
       [
         { title: "Sr. No", field: "tableData.id" , render : rowData => rowData.tableData.id+1},
         { title: 'Date', field: 'date' },
@@ -100,7 +98,6 @@ const DoctorDashboard = () => {
         .then(data => {
           data.name = rowData.patient_name
           setPrescriptions(data)
-          setLoading(false)
         })
         .catch(err => console.log(err))
     }
