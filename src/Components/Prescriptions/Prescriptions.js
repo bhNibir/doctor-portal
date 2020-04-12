@@ -6,6 +6,7 @@ import ShowLoading from '../ShowLoading/ShowLoading';
 import DateFnsUtils from '@date-io/date-fns';
 import { apiURL } from '../../App';
 import PrescriptionsForm from '../PrescriptionsForm/PrescriptionsForm';
+import ShowPrescriptions from '../ShowPrescriptions/ShowPrescriptions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,7 +31,8 @@ const Prescriptions = () => {
     const classes = useStyles();
     const [selectedDate, handleDateChange] = useState(new Date());
     const [tableData, setTableData] = useState(null)
-
+    const [open, setOpen] = useState(false);
+    const [prescriptions, setPrescriptions] = useState(null);
     const [tableHeader, setTableHeader] = useState(
       [
         { title: "Sr. No", field: "tableData.id" , render : rowData => rowData.tableData.id+1},
@@ -56,9 +58,25 @@ const Prescriptions = () => {
         fetch(apiURL+"/getallappointments")
         .then(response => response.json())
         .then(data => setTableData(data))
-    },[])       
+    },[]) 
+
     const handleClick= rowData => {
-        console.log(rowData)
+        setOpen(true);
+        const {patient_email}=rowData
+        console.log(patient_email)
+        fetch(apiURL+'/getprescriptions',{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({patient_email})
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          setPrescriptions(data)
+        })
+        .catch(err => console.log(err))
     }
     
     return (
@@ -94,7 +112,9 @@ const Prescriptions = () => {
         </>:
         <ShowLoading/>
       }
-      {/* <PrescriptionsForm></PrescriptionsForm> */}
+        {
+          prescriptions && <ShowPrescriptions open={open} setOpen={setOpen} prescriptions={prescriptions}/>
+        }
       </>          
         
     );

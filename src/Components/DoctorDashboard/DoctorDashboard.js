@@ -8,6 +8,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
 import ShowLoading from '../ShowLoading/ShowLoading';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import PrescriptionsForm from '../PrescriptionsForm/PrescriptionsForm';
+import ShowPrescriptions from '../ShowPrescriptions/ShowPrescriptions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,9 +53,11 @@ const useStyles = makeStyles((theme) => ({
 
 const DoctorDashboard = () => {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    const [prescriptions, setPrescriptions] = useState(null);
     const [selectedDate, handleDateChange] = useState(new Date());
     const [tableData, setTableData] = useState(null)
-
+    const [loading, setLoading] = useState(false);
     const [tableHeader, setTableHeader] = useState(
       [
         { title: "Sr. No", field: "tableData.id" , render : rowData => rowData.tableData.id+1},
@@ -80,9 +84,26 @@ const DoctorDashboard = () => {
         fetch(apiURL+"/getallappointments")
         .then(response => response.json())
         .then(data => setTableData(data))
-    },[])       
+    },[]) 
+          
     const handleClick= rowData => {
-        console.log(rowData)
+        setOpen(true);
+        const {patient_email}=rowData
+        console.log(patient_email)
+        fetch(apiURL+'/getprescriptions',{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({patient_email})
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          setPrescriptions(data)
+          setLoading(false)
+        })
+        .catch(err => console.log(err))
     }
     
     return (
@@ -128,6 +149,9 @@ const DoctorDashboard = () => {
         </>:
         <ShowLoading/>
       }
+        {
+          prescriptions && <ShowPrescriptions open={open} setOpen={setOpen} prescriptions={prescriptions}/>
+        }
       </>          
 
     );
