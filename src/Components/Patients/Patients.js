@@ -4,6 +4,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import { apiURL } from '../../App';
 import DateFnsUtils from '@date-io/date-fns';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
+import ShowLoading from '../ShowLoading/ShowLoading';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,7 +42,10 @@ const Patients = () => {
 
     return (
         <>
-        <Grid item>
+        {
+            tableData
+            ?
+            <Grid item>
             <Paper>
                 <Box display="flex" p={1} >
                     <Box flexGrow={1} p={2}>
@@ -65,6 +69,9 @@ const Patients = () => {
                 }
                 </Paper>
             </Grid>
+            :
+            <ShowLoading/>
+            }
         </>
     );
 };

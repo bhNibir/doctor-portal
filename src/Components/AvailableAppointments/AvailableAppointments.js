@@ -4,20 +4,13 @@ import { apiURL } from '../../App';
 import ServicesCard from '../ServicesCard/ServicesCard';
 import { useStyles } from '../Home/useStyle';
 
-const AvailableAppointments = ({selectedDate}) => {
+const AvailableAppointments = ({selectedDate, services}) => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-    const [services, setServices] = useState([])
     const classes = useStyles();
-    useEffect(()=>{
-        fetch(apiURL+"/getservices")
-        .then(response => response.json())
-        .then(data => setServices(data))
-    },[])
-
-    
+        
     return (
         <> 
-        <Container  maxWidth="md"> 
+            <Container  maxWidth="md"> 
             <Box my={3} className={classes.gradientText}>
                 <Typography variant="h4" align="center" >
                     Available Appointments on {selectedDate.toLocaleDateString(undefined, options)}

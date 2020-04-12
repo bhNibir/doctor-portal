@@ -4,6 +4,7 @@ import { Grid, Paper, Typography, Box, Button, makeStyles } from '@material-ui/c
 import { apiURL } from '../../App';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ShowLoading from '../ShowLoading/ShowLoading';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const DoctorAppointment = () => {
     const classes = useStyles()
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [tableData, setTableData] = useState()
+    const [tableData, setTableData] = useState(null)
     const tableHeader = [
       { field: 'patient_name', title: 'Name' },
       { field: 'time', title: 'Schedule' },
@@ -62,7 +63,9 @@ const DoctorAppointment = () => {
     },[selectedDate])
     return (
         <>
-        <Grid container spacing={3}>
+        {
+          tableData ?
+          <Grid container spacing={3}>
             {/* Doctor Appointment Calender */}
             <Grid item xs={12} md={5} lg={4}>
               <Paper>
@@ -93,6 +96,9 @@ const DoctorAppointment = () => {
             </Grid>
 
             </Grid>
+          :
+          <ShowLoading/>
+        }
         </>
     );
 };
