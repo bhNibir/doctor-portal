@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
 const drawerWidth = 240;
@@ -32,7 +31,6 @@ export const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
       },
       appBar: {
-        backgroundColor: "#F4FDFB",
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
           easing: theme.transitions.easing.sharp,

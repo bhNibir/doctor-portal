@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Home from '../Home/Home';
 import AppointmentCalender from '../AppointmentCalender/AppointmentCalender';
 import AvailableAppointments from '../AvailableAppointments/AvailableAppointments';
-import ShowLoading from '../ShowLoading/ShowLoading';
 import { apiURL } from '../../App';
-import Navbar from '../Navbar/Navbar';
 
 const Appointment = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -21,24 +19,13 @@ const Appointment = () => {
     };
     return (
         <>
-        {
-            services
-            ?
-            <>
-                <Home>
-                    <AppointmentCalender
-                        selectedDate={selectedDate}
-                        handleDateChange={handleDateChange}
-                    />
-                </Home>
-                <AvailableAppointments selectedDate={selectedDate} services={services}/>
-            </>
-            :
-            <>
-                <Navbar/>
-                <ShowLoading/>
-            </>
-        }
+         <Home>
+            <AppointmentCalender
+                selectedDate={selectedDate}
+                handleDateChange={handleDateChange}
+            />
+            </Home>
+            <AvailableAppointments selectedDate={selectedDate} services={services}/>
         </>
     );
 };

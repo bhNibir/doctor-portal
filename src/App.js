@@ -45,25 +45,25 @@ function App() {
           </Route>
 
           <Route exact path="/doctor/dashboard">
-            <DashboardLayout>
+            <DashboardLayout title={"Doctor's Dashboard"}>
               <DoctorDashboard/>
             </DashboardLayout>
           </Route>
 
           <Route exact path="/doctor/appointment">
-            <DashboardLayout>
+            <DashboardLayout title={"Appointment"}>
               <DoctorAppointment/>
             </DashboardLayout>
           </Route>
 
           <Route exact path="/doctor/patients">
-            <DashboardLayout>
+            <DashboardLayout title={"Patients"} >
               <Patients/>
             </DashboardLayout>
           </Route>
 
           <Route exact path="/doctor/prescriptions">
-            <DashboardLayout>
+            <DashboardLayout title={"Prescriptions"}>
               <Prescriptions/>
             </DashboardLayout>
           </Route>

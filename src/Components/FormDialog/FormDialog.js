@@ -26,7 +26,7 @@ const FormDialog = ({ service, selectedDate }) => {
     const [alert, setAlert] = useState(null)
     const [open, setOpen] = useState(false);
     const classes = useStyles()
-    const [appointment, setAppointment] = useState({
+    const [appointment,setAppointment] = useState({
       doctor_id : "",
       date: "",
       time: "",
@@ -53,7 +53,6 @@ const FormDialog = ({ service, selectedDate }) => {
       })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         handleClose()
         setAlert({type : 'success', message : 'Thank You For Appointment'})
       })

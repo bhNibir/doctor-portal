@@ -73,7 +73,7 @@ const DoctorDashboard = () => {
                 <div className={classes.root}>
                     <Grid container spacing={3}>
                         {
-                            statusCardItems.map(item => <StatusCard item={item}></StatusCard>)
+                            statusCardItems.map(item => <StatusCard key={item.color} item={item}></StatusCard>)
                         }
                     </Grid>
                 </div>

@@ -3,8 +3,9 @@ import { Grid } from '@material-ui/core';
 import Loader from 'react-loader-spinner'
 
 const ShowLoading = () => {
+
     return (
-        <div>
+        <>
             <Grid
           container
           spacing={0}
@@ -16,7 +17,7 @@ const ShowLoading = () => {
       
         <Grid item xs={3}>
         <Loader
-              type="Puff"
+              type="Rings"
               color="#19D3AE"
               height={100}
               width={100}
@@ -24,7 +25,7 @@ const ShowLoading = () => {
         </Grid>      
       </Grid> 
        
-        </div>
+        </>
     );
 };
 
