@@ -162,8 +162,9 @@ const FormDialog = ({ service, selectedDate }) => {
             <Button onClick={handleClose} className={classes.btn}>
               Close
             </Button>
-            <input style={{fontSize:"0.875rem", fontWeight: "600", textTransform:"uppercase"}}  type="submit" className={classes.btn} value="Send" />
-              
+            <Button onClick={handleClose} className={classes.btn} type="submit">
+              Submit
+            </Button>
           </DialogActions>
           </form>
         </Dialog>

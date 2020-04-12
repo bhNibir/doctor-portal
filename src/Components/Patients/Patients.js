@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Patients = () => {
     const classes = useStyles();
-    const [selectedDate, handleDateChange] = useState(new Date());
+    const [ handleDateChange] = useState(new Date());
     const [tableData, setTableData] = useState(null)
-    const [tableHeader, setTableHeader] = useState(
+    const [tableHeader] = useState(
         [   { title: "Sr. No", field: "tableData.id" , render : rowData => rowData.tableData.id+1},
             { field: 'name', title: 'Name' },
             { field: 'gender', title: 'Gender' },  
