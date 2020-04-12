@@ -89,7 +89,6 @@ const DoctorDashboard = () => {
     const handleClick= rowData => {
         setOpen(true);
         const {patient_email}=rowData
-        console.log(patient_email)
         fetch(apiURL+'/getprescriptions',{
           method: 'POST',
           headers: {
@@ -99,7 +98,7 @@ const DoctorDashboard = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
+          data.name = rowData.patient_name
           setPrescriptions(data)
           setLoading(false)
         })

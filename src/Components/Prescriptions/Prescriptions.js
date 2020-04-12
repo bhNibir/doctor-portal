@@ -73,7 +73,7 @@ const Prescriptions = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
+          data.name = rowData.patient_name
           setPrescriptions(data)
         })
         .catch(err => console.log(err))

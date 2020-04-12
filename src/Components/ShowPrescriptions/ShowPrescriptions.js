@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DialogActions, Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
+import ShowLoading from '../ShowLoading/ShowLoading';
 
 const ShowPrescriptions = ({open, setOpen, prescriptions}) => {
 
@@ -19,9 +20,15 @@ const ShowPrescriptions = ({open, setOpen, prescriptions}) => {
     };
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle id="form-dialog-title">Patients ID: Prescriptions</DialogTitle>
+            <DialogTitle id="form-dialog-title">Prescriptions of {prescriptions.name}</DialogTitle>
             <DialogContent>
-                <ShowDataTable tableHeader={tableHeader} tableData={prescriptions} />
+           
+                {
+                    prescriptions ?
+                    <ShowDataTable tableHeader={tableHeader} tableData={prescriptions} />
+                    :
+                    <ShowLoading/>
+                }
 
             </DialogContent>
             <DialogActions>
