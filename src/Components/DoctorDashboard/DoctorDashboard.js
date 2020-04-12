@@ -7,7 +7,7 @@ import {  MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picke
 import DateFnsUtils from '@date-io/date-fns';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
 import ShowLoading from '../ShowLoading/ShowLoading';
-
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,7 +27,27 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 
-  
+  const tableActions = [
+    {
+      icon : () => <Button 
+      component="span"
+      variant="contained"
+      style={{textTransform: 'none', backgroundColor: "#76C5FF", color:'#fff'}}
+      size="small">Pending</Button>,
+      tooltip: 'Save User',
+      onClick: (event, rowData) => alert("You saved " + rowData.name)
+    },
+    rowData => ({
+      icon: () => <Button 
+      component="span"
+      variant="contained"
+      style={{textTransform: 'none', backgroundColor: "#FFD076", color:'#fff'}}
+      size="small"><EditOutlinedIcon/></Button>,
+      tooltip: 'Edit',
+      onClick: (event, rowData) => alert("You want to delete " + rowData.name),
+      disabled: rowData.birthYear < 2000
+    })
+  ]
 
 const DoctorDashboard = () => {
     const classes = useStyles();
@@ -36,6 +56,7 @@ const DoctorDashboard = () => {
 
     const [tableHeader, setTableHeader] = useState(
       [
+        { title: "Sr. No", field: "tableData.id" , render : rowData => rowData.tableData.id+1},
         { title: 'Date', field: 'date' },
         { title: 'Time', field: 'time' },
         { title: 'Name', field: 'patient_name' },
@@ -47,7 +68,7 @@ const DoctorDashboard = () => {
         }
       ]
     )
-    
+   
     const statusCardItems = [
         {total: 29, text: "Pending Appointments", color: "#F1536E"},
         {total: 20, text: "Today’s Appointments", color: "#3DA5F4"},
@@ -99,7 +120,7 @@ const DoctorDashboard = () => {
               </Box>
             
                 {
-                  tableData && <ShowDataTable tableData={tableData} tableHeader={tableHeader} />
+                  tableData && <ShowDataTable tableData={tableData} tableHeader={tableHeader} tableActions={tableActions}/>
                 }
               </Paper>
             </Grid>

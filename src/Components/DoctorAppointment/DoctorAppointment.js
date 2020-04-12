@@ -36,9 +36,14 @@ const DoctorAppointment = () => {
       { field: 'patient_name', title: 'Name' },
       { field: 'time', title: 'Schedule' },
       {
+        field: '_id',
+        title: 'Prescription',  
+        render: rowData =>  <Button className={classes.btn} onClick={()=>handleClick(rowData)}>Add</Button>
+      },
+      {
         field: '', 
         title: 'Action',
-        render: rowData => <Button className={classes.btn}>Not Visited <ArrowDropDownIcon /></Button>
+        render: rowData => <Button size="small" className={classes.btn}>Not Visited <ArrowDropDownIcon /></Button>
       }
     ];
 
@@ -46,6 +51,10 @@ const DoctorAppointment = () => {
         setLoading(true)
         setSelectedDate(date);
     };
+
+    const handleClick= rowData => {
+      console.log(rowData)
+    }
 
     const convertDate = date => {
       const newDate = JSON.stringify(date)
@@ -73,7 +82,7 @@ const DoctorAppointment = () => {
           tableData ?
           <Grid container spacing={3}>
             {/* Doctor Appointment Calender */}
-            <Grid item xs={12} md={5} lg={4}>
+            <Grid item xs={12} md={4} lg={3}>
               <Paper>
                 <AppointmentCalender
                         selectedDate={selectedDate}
@@ -82,7 +91,7 @@ const DoctorAppointment = () => {
               </Paper>
             </Grid>
             
-            <Grid item xs={12} md={7} lg={8}>
+            <Grid item xs={12} md={8} lg={9}>
               <Paper>
                 <Box display="flex" p={1} >
                   <Box flexGrow={1} p={2}>

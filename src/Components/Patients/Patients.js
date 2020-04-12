@@ -24,7 +24,7 @@ const Patients = () => {
     const [selectedDate, handleDateChange] = useState(new Date());
     const [tableData, setTableData] = useState(null)
     const [tableHeader, setTableHeader] = useState(
-        [
+        [   { title: "Sr. No", field: "tableData.id" , render : rowData => rowData.tableData.id+1},
             { field: 'name', title: 'Name' },
             { field: 'gender', title: 'Gender' },  
             { field: 'age', title: 'Age' },

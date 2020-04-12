@@ -38,14 +38,15 @@ const tableIcons = {
   };
 
   
-const ShowDataTable = ({tableData, tableHeader, tableTitle}) => {
+const ShowDataTable = ({tableData, tableHeader, tableTitle, tableActions}) => {
+
     return (
         <MaterialTable
           icons={tableIcons}
           title={tableTitle}
           columns = {tableHeader}
           data={tableData}
-          // actions={props.rows || null} 
+          actions={tableActions || []} 
           options={{
             actionsColumnIndex: -1,
             search: false,
