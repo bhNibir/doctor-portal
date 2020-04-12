@@ -6,6 +6,7 @@ import { apiURL } from '../../App';
 import {  MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import DateFnsUtils from '@date-io/date-fns';
 import ShowDataTable from '../ShowDataTable/ShowDataTable';
+import ShowLoading from '../ShowLoading/ShowLoading';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,8 +42,8 @@ const DoctorDashboard = () => {
         { title: 'Contact', field: 'patient_number' },
         {
           field: '_id',
-          title: 'Prescription',
-          render: rowData =>  <Button className={classes.btn}>View</Button>
+          title: 'Prescription',  
+          render: rowData =>  <Button className={classes.btn} onClick={()=>handleClick(rowData)}>View</Button>
         }
       ]
     )
@@ -59,9 +60,14 @@ const DoctorDashboard = () => {
         .then(response => response.json())
         .then(data => setTableData(data))
     },[])       
- 
+    const handleClick= rowData => {
+        console.log(rowData)
+    }
     
     return (
+      <> {
+        tableData ? 
+      
         <>
            <Box mb={3}>
                 <div className={classes.root}>
@@ -98,7 +104,11 @@ const DoctorDashboard = () => {
               </Paper>
             </Grid>
             
-        </>
+        </>:
+        <ShowLoading/>
+      }
+      </>          
+
     );
 };
 
