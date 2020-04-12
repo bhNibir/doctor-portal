@@ -60,8 +60,6 @@ const FormDialog = ({ service, selectedDate }) => {
         setAlert({type : 'error', message : err})
       })
 
-      
-
     }
 
     const handleClickOpen = () => {

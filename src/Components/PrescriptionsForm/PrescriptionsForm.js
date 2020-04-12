@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
+import { apiURL } from '../../App';
+import AlertMessage from '../AlertMessage/AlertMessage';
 
-const PrescriptionsForm = ({open, setOpen, patientInfo}) => {
+const PrescriptionsForm = ({open, setOpen, prescriptionInfo}) => {
+    const [alert, setAlert] = useState(null)
     const { handleSubmit, register, setValue } = useForm();
 
     const onSubmit = data => {
-        console.log(data)
-        console.log(patientInfo)
-        handleClose()
+        const {patientName, ...rest} = data
+        const {patient_email} = prescriptionInfo
+        const prescriptionData = {patient_email, ...rest}
+        console.log(prescriptionData)
+
+        //sent data to DataBase
+        fetch(apiURL+"/addprescriptions", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(prescriptionData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            handleClose()
+            setAlert({type : 'success', message : 'Prescription Added'})
+        })
+        .catch(err => {
+            setAlert({type : 'error', message : err})
+        })
     }
     const handleClose = (value) => {
         setOpen(false);
@@ -25,10 +44,10 @@ const PrescriptionsForm = ({open, setOpen, patientInfo}) => {
                 size="small"
                 variant="outlined"
                 label="Doctor ID" 
-                name="doctorID" 
+                name="doctor_id" 
                 inputRef={register({required: true, maxLength: 180})}
                 style={{marginBottom: "5pt"}}
-                defaultValue={patientInfo.doctor_id}
+                defaultValue={prescriptionInfo.doctor_id}
                 disabled
             />
             <TextField 
@@ -39,7 +58,7 @@ const PrescriptionsForm = ({open, setOpen, patientInfo}) => {
                 name="patientName" 
                 inputRef={register({required: true, maxLength: 180})}
                 style={{marginBottom: "5pt"}}
-                defaultValue={patientInfo.patient_name}
+                defaultValue={prescriptionInfo.patient_name}
             />
              <TextField 
                 fullWidth
@@ -49,6 +68,7 @@ const PrescriptionsForm = ({open, setOpen, patientInfo}) => {
                 name="medicine1" 
                 inputRef={register({required: true, maxLength: 180})}
                 style={{marginBottom: "5pt"}}
+                defaultValue={prescriptionInfo.medicine1 || ""}
             />
             <TextField 
                 fullWidth
@@ -58,6 +78,7 @@ const PrescriptionsForm = ({open, setOpen, patientInfo}) => {
                 name="medicine2" 
                 inputRef={register({maxLength: 180})}
                 style={{marginBottom: "5pt"}}
+                defaultValue={prescriptionInfo.medicine2 || ""}
             />
             <TextField 
                 fullWidth
@@ -67,6 +88,7 @@ const PrescriptionsForm = ({open, setOpen, patientInfo}) => {
                 name="medicine3" 
                 inputRef={register({ maxLength: 180})}
                 style={{marginBottom: "5pt"}}
+                defaultValue={prescriptionInfo.medicine3 || ""}
             />
             
             </DialogContent>
@@ -85,6 +107,10 @@ const PrescriptionsForm = ({open, setOpen, patientInfo}) => {
             </DialogActions>
             </form>
         </Dialog>
+        {
+          alert && <AlertMessage AlertMessage={alert.message} alertType={alert.type}/>
+          
+        }
     </>
   );
 }

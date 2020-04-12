@@ -94,7 +94,7 @@ const Prescriptions = () => {
         </>:
         <ShowLoading/>
       }
-      <PrescriptionsForm></PrescriptionsForm>
+      {/* <PrescriptionsForm></PrescriptionsForm> */}
       </>          
         
     );

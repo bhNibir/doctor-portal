@@ -32,7 +32,7 @@ const DoctorAppointment = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
-    const [patientInfo, setPatientInfo] = useState(null);
+    const [prescriptionInfo, setPrescriptionInfo] = useState(null);
     const [tableData, setTableData] = useState(null)
     const tableHeader = [
       { field: 'patient_name', title: 'Name' },
@@ -55,7 +55,7 @@ const DoctorAppointment = () => {
    
    
     const handleClick= rowData => {
-      setPatientInfo(rowData)
+      setPrescriptionInfo(rowData)
       setOpen(true);
     }
 
@@ -124,7 +124,7 @@ const DoctorAppointment = () => {
           <ShowLoading/>
         }
         {
-          patientInfo && <PrescriptionsForm open={open} setOpen={setOpen} patientInfo={patientInfo}/>
+          prescriptionInfo && <PrescriptionsForm open={open} setOpen={setOpen} prescriptionInfo={prescriptionInfo}/>
         }
         </>
     );
