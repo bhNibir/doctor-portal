@@ -7,7 +7,7 @@ import ShowLoading from '../ShowLoading/ShowLoading';
 const AvailableAppointments = ({selectedDate, services}) => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
     const classes = useStyles();
-        
+ 
     return (
         <> 
             {
@@ -23,7 +23,7 @@ const AvailableAppointments = ({selectedDate, services}) => {
                 
                     <Grid container spacing={4}>
                         {
-                            services.map(service => <ServicesCard service={service} selectedDate={selectedDate}/>)
+                            services.map(service => <ServicesCard key={service._id} service={service} selectedDate={selectedDate}/>)
                         }
                     </Grid>
                 </Container>  

@@ -17,12 +17,12 @@ const ServicesCard = ({ service, selectedDate }) => {
                         {service.treatment}
                     </Box>
                   </Typography>
-                  <Typography>
+                  <Typography component="span">
                     <Box fontWeight="fontWeightBold">
                         {service.time}
                     </Box>
                   </Typography>
-                  <Typography variant="body2" color="textSecondary">
+                  <Typography variant="body2" color="textSecondary" component="span">
                     <Box mt={2} fontSize={12}>
                         {service.spaces}
                     </Box>
