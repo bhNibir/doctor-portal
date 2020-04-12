@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, DialogContent, TextField, DialogActions } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Input } from '@material-ui/core';
 import { useStyles } from '../Home/useStyle';
 import { useForm } from 'react-hook-form';
 import { RHFInput } from 'react-hook-form-input';
@@ -164,7 +164,7 @@ const FormDialog = ({ service, selectedDate }) => {
             <Button onClick={handleClose} className={classes.btn}>
               Close
             </Button>
-            <input  type="submit" className={classes.btn} value="Send" />
+            <input style={{fontSize:"0.875rem", fontWeight: "600", textTransform:"uppercase"}}  type="submit" className={classes.btn} value="Send" />
               
           </DialogActions>
           </form>
