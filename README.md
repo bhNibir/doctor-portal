@@ -1,4 +1,4 @@
-# Red Onion Foods
+# Doctors Portal
 
 ## [Live](https://doctor-portal-bhnibir.web.app/) || [Back-End API Live](https://agile-savannah-65614.herokuapp.com/) || [Back-End Github ](https://github.com/bhNibir/doctor-portal-api)
 
